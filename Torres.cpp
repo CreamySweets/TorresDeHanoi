@@ -54,25 +54,25 @@ void Torres::imprimir(int ultimoNumero)
         {
             espacios = (ultimoNumero - tablero[columnas * contadorFilas + contadorColumnas]) / 2;
 
-            // Imprime espacios
-            for (i = 0; i < espacios; i++) {
-                std::cout << " ";
-            }
+            // Espacios que están en la izquierda
+            imprimirEspaciosAnteriores(0, espacios);
 
-            // Imprime los discos
-            for (i = 0; i < tablero[columnas * contadorFilas + contadorColumnas]; i++) {
+            // Imprime los comodines
+            /*for (i = 0; i < tablero[columnas * contadorFilas + contadorColumnas]; i++) {
                 std::cout << "*";
-            }
+            }*/
+            imprimirDiscos(0, tablero[columnas * contadorFilas + contadorColumnas]);
 
-            // Imprime espacios
-            for (i = 0; i < espacios; i++) {
+
+            // Espacios a la derecha
+            /*for (i = 0; i < espacios; i++) {
                 std::cout << " ";
-            }
-          
+            }*/
+            imprimirEspaciosPosteriores(0, espacios);
             std::cout << "\t";
         }
 
-        std::cout <<"\n";
+        std::cout << "\n";
     }
 
 
@@ -84,7 +84,7 @@ void Torres::moverDisco(int ultimoNumero, int filaOrigen, int filaDestino)
     int cO = columnas - 1, cD = columnas - 1;
 
 
-    // Se busca el tope de la fila origen
+    // Se busca el disco que se encuentre mas arriba y por lo tanto el mas pequeño de la fila de origen.
     while (cO >= 0 && tablero[columnas * filaOrigen + cO] == 0)
     {
         cO--;
@@ -92,17 +92,17 @@ void Torres::moverDisco(int ultimoNumero, int filaOrigen, int filaDestino)
     if (cO < 0)
         cO = 0;
 
-    // Se calcula la posición de la fila destino
+    // Ahora se calcula cual es la posición libre mas arriba de la fila de destino
     while (cD >= 0 && tablero[columnas * filaDestino + cD] == 0)
     {
         cD--;
     };
 
-    // Se mueve el disco a esa fila
+    // Se mueve el disco de la fila de origen a la de destino:
     tablero[columnas * filaDestino + cD + 1] = tablero[columnas * filaOrigen + cO];
     tablero[columnas * filaOrigen + cO] = 0;
 
-    // Se imprime el tablero de juego:
+    // Se imprime el tablero:
     imprimir(ultimoNumero);
 };
 
@@ -111,7 +111,7 @@ void Torres::jugar(int disco, int ultimoNumero, int O, int A, int D)
 {
     if (disco == 1)
     {
-        // Se limpia la pantalla, imprime y toma pausa entre impresiones
+        // Se borra la pantalla, se imprime la tabla y se hace una pausa que varia dependiendo del numero de discos:
         system("cls");
         moverDisco(ultimoNumero, O, D);
         if (columnas <= 5) Sleep(80); else if (columnas <= 10) Sleep(30); else if (columnas <= 15) Sleep(6); else if (columnas > 15) Sleep(20);
@@ -128,3 +128,31 @@ void Torres::jugar(int disco, int ultimoNumero, int O, int A, int D)
     };
 
 };
+
+
+void Torres::imprimirEspaciosAnteriores(int i, int espacios) {
+    if (i == espacios) {
+    }
+    else {
+        std::cout << " ";
+        imprimirEspaciosAnteriores(i + 1, espacios);
+    }
+}
+
+void Torres::imprimirDiscos(int i, int asteriscos) {
+    if (i == asteriscos) {
+    }
+    else {
+        std::cout << "*";
+        imprimirDiscos(i + 1, asteriscos);
+    }
+}
+
+void Torres::imprimirEspaciosPosteriores(int i, int espacios) {
+    if (i == espacios) {
+    }
+    else {
+        std::cout << " ";
+        imprimirEspaciosPosteriores(i + 1, espacios);
+    }
+}
