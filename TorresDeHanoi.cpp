@@ -1,4 +1,4 @@
-#include "Torres.h"
+#include "Torres.cpp"
 int main()
 {
     Torres t;
