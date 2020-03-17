@@ -11,15 +11,15 @@ class Torres
 		int movimiento;
 	public:
 		Torres();
-		void menu(); //Mariano
-		void reglas(); //Cuevas
-		void imprimirEspacios(int, int); //Mariano
-		void imprimirDiscos(int, int); //Mariano
-		void iniciarJuego(); //Cuevas
-		void empezar();//Cuevas
-		void imprimir(int); //Cuevas
-		void moverDisco(int, int, int ); //
-		void jugar(int, int, int, int, int); //carlos
+		void menu();
+		void reglas();
+		void imprimirEspacios(int, int);
+		void imprimirDiscos(int, int);
+		void iniciarJuego();
+		void empezar();
+		void imprimir(int);
+		void moverDisco(int, int, int );
+		void jugar(int, int, int, int, int);
 };
 #endif
 
