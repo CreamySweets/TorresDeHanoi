@@ -6,6 +6,8 @@ private:
 	int filas, columnas;
 public:
 	Torres();
+	void menu();
+	void reglas();
 	void imprimirEspaciosAnteriores(int, int);
 	void imprimirDiscos(int, int);
 	void imprimirEspaciosPosteriores(int, int);

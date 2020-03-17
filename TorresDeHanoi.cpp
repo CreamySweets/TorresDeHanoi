@@ -2,5 +2,5 @@
 int main()
 {
     Torres t;
-    t.empezar();
+    t.menu();
 };

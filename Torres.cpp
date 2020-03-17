@@ -15,6 +15,38 @@ void Torres::empezar() {
     iniciarJuego();
 }
 
+void Torres::menu() {
+    int Op, disc;
+    while (true) {
+        system("cls");
+        std::cout << "\t Torres de Hanoi" << std::endl
+            << "1.Jugar" << std::endl
+            << "2.Reglas" << std::endl
+            << "3.Calcular movimientos" << std::endl
+            << "4.Salir" << std::endl
+            << "Opcion: ";
+        std::cin >> Op;
+        switch (Op) {
+        case 1:
+            empezar();
+            system("pause");
+            break;
+        case 2:
+            reglas();
+            system("pause");
+            break;
+        case 3:
+            std::cout << "Ingrese el numero de discos-> ";
+            std::cin >> disc;
+            std::cout << "El numero de movimientos es " << pow(2, disc) - 1 << std::endl;
+            system("pause");
+            break;
+        case 4:
+            exit(true);
+        }
+    }
+}
+
 void Torres::iniciarJuego() {
     // Reinicia las torres poniendo todos los discos en la primera y vaciándolas
     int i, j, disco = 1, ultimoNumero;
@@ -77,6 +109,13 @@ void Torres::imprimir(int ultimoNumero)
 
 
 };
+
+void Torres::reglas() {
+    std::cout << "\t\t**Reglas**" << std::endl
+        << "1. Solo se puede mover un disco cada vez y para mover otro los demás tienen que estar en postes." << std::endl
+        << "2. Un disco de mayor tamaño no puede estar sobre uno más pequeño que él mismo." << std::endl
+        << "3. Solo se puede desplazar el disco que se encuentre arriba en cada poste." << std::endl;
+}
 
 
 void Torres::moverDisco(int ultimoNumero, int filaOrigen, int filaDestino)
